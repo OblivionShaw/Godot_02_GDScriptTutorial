@@ -4,3 +4,13 @@ Godot 4.2.2
 
 node數值取得/控制  
 input 自訂按鍵
+variables  
+if  
+Comments  
+variables可不宣告類型 也可強制宣告 前面+上@export屬性可看到 前面+上const常數  
+func帶參數/回傳/設定類型
+random randf randi_range  
++ctrl可直接看Documentation  
+array remove_at append  
+loops for while(continue/break)  
+Dictionaries
