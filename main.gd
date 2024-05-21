@@ -5,11 +5,49 @@ var text:String = "JACK"
 var number:= 22
 @export var seenumber:= 22
 
+enum Alignment {ALLY , NEUTRAL,ENEMY}
+enum Alignment2 {ALLY = 0 , NEUTRAL = 1,ENEMY = 2}
+var FriendlyElf = Alignment.ALLY
+@export var EvilElf = Alignment
+
+@onready var weapon = $Player/Weapon
+@export var my_node:Node
+@export var my_sprite2d:Sprite2D
+
+var xp = 0
+signal gmsignal
+
+signal levelchamged(new_health)
+var level :=0:
+	set(value):
+		level = (clamp(value,1,99))
+		levelchamged.emit(level)
+var chance :=0.2
+var chance_pct:int:
+	get:
+		return chance * 100
+	set(value):
+		chance = float(value) / 100.0
+
+@export var NPC1 :Character
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("Jack現有生命" + str(health))
 	$Label.text = "Hello Jack"
 	$Label.modulate = Color.RED
+	gmsignal.connect(_on_gmsignal)
+	## gmsignal.disconnect(_on_gmsignal)
+	level = -10
+	
+	print(chance_pct)
+	chance = 0.6
+	print(chance_pct)
+	chance_pct = 40
+	print(chance_pct)
+	
+	NPC1.die()
 	pass # Replace with function body.
 
 
@@ -26,7 +64,10 @@ func _input(event):
 		# random()
 		# array()
 		# loop()
-		dictionaries()
+		# dictionaries()
+		# enums()
+		#Match()
+		Modifyingnodes()
 	if event.is_action_released("my_action"):
 		$Label.modulate = Color.RED
 		
@@ -90,3 +131,47 @@ func dictionaries():
 		"Hank":{"Level":1, "Health":9}}
 	print(playerex["Jack"]["Level"])
 	print(playerex["Hank"]["Health"])
+
+func enums():
+	var NPC = Alignment.ALLY
+	if NPC == Alignment.ALLY:
+		print("hi")
+	else:
+		print("out")
+		
+func Match():
+	match FriendlyElf:
+		Alignment.ALLY:
+			print("ALLY")
+		Alignment.NEUTRAL:
+			print("NEUTRAL")
+		Alignment.ENEMY:
+			print("ENEMY")
+		_:
+			print("default")
+
+func Modifyingnodes():
+	print(weapon.get_path())
+	
+	if my_node is Node2D:
+		print("Node2D")
+	else:
+		print("not Node2D")
+
+
+func _on_button_pressed():
+	print("ya")
+	pass # Replace with function body.
+	
+func _on_timer_timeout():
+	xp += 1
+	gmsignal.emit()
+	print("xp add")
+
+func _on_gmsignal():
+	if xp == 5:
+		print("level up")
+
+
+func _on_levelchamged(new_health):
+	print(new_health)

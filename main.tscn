@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cylo48sa4dgfd"]
+[gd_scene load_steps=3 format=3 uid="uid://cylo48sa4dgfd"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_tobdd"]
+[ext_resource type="Script" path="res://Character.gd" id="2_i5yl4"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" node_paths=PackedStringArray("my_node", "NPC1")]
 script = ExtResource("1_tobdd")
+my_node = NodePath("Player/Node2D")
+NPC1 = NodePath("Character")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 8
@@ -21,3 +24,40 @@ theme_override_font_sizes/font_size = 116
 text = "this is Sparta"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Player" type="Node" parent="."]
+
+[node name="Weapon" type="Node" parent="Player"]
+
+[node name="Node2D" type="Node2D" parent="Player"]
+
+[node name="Enemy" type="Node" parent="."]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 248.0
+offset_top = 387.0
+offset_right = 896.0
+offset_bottom = 632.0
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Character" type="Node" parent="."]
+script = ExtResource("2_i5yl4")
+profession = "Paladin"
+health = 100
+
+[node name="Character2" type="Node" parent="."]
+script = ExtResource("2_i5yl4")
+profession = "Warlock"
+health = 80
+
+[node name="Character3" type="Node" parent="."]
+script = ExtResource("2_i5yl4")
+profession = "Shooter"
+health = 80
+
+[connection signal="gmsignal" from="." to="." method="_on_gmsignal"]
+[connection signal="levelchamged" from="." to="." method="_on_levelchamged"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
