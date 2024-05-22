@@ -3,8 +3,7 @@ Godot 4.2.2
 [翻譯](https://www.bilibili.com/video/BV1fs421A7kq)  
 [Inheritance/Composition](https://www.youtube.com/watch?v=74y6zWZfQKk)  
 [Call down, Signal up](https://kidscancode.org/godot_recipes/4.x/basics/node_communication/)  
-[Style](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html)  
-
+[Style](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html) [Style翻譯](https://docs.godotengine.org/zh-tw/4.x/tutorials/scripting/gdscript/gdscript_styleguide.html)  
 
 node數值取得/控制  
 input 自訂按鍵
